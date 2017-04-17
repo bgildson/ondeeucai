@@ -1,0 +1,13 @@
+@import 'app-common';
+@import '~nativescript-theme-core/scss/platforms/index.ios';
+
+// Place any CSS rules you want to apply only on iOS here
+
+Page {
+  margin-top:-20;
+}
+TextField {
+  padding: 2px 20px;
+  border-bottom-width: 1;
+  border-bottom-color: $colorC;
+}

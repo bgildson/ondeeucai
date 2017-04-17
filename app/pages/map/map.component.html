@@ -1,0 +1,22 @@
+<RadSideDrawer #drawer drawerLocation="Left">
+  <StackLayout tkDrawerContent>
+    <Image src="res://user-profile-400" class="header-image img-circle"></Image>
+    <Label text="Gildson Bezerra" class="profile-name" ></Label>
+    <Label class="divider"></Label>
+    <Button class="btn" text="Perfil" (tap)="navigateProfile()"></Button>
+    <Button class="btn" text="Quedas" (tap)="navigateQuedas()"></Button>
+    <Button class="btn" text="Sair" (tap)="navigateLogin()"></Button>
+  </StackLayout>
+  <StackLayout tkMainContent>
+    <AbsoluteLayout width="100%" height="100%">
+        <MapView top="0" left="0" width="100%" height="100%" (mapReady)="onMapReady($event)" (coordinateTapped)="mapTapped($event)"></MapView>
+        <Button class="menu-button" (tap)="openDrawer()"></Button>
+        <Label top="0" left="0" width="2%" height="100%" text=""></Label>
+    </AbsoluteLayout>
+  </StackLayout>
+</RadSideDrawer>
+
+<!--<AbsoluteLayout width="100%" height="100%">
+    <MapView top="0" left="0" width="100%" height="100%" (mapReady)="onMapReady($event)" (coordinateTapped)="mapTapped($event)"></MapView>
+    <Image top="20" left="20" src="res://icon-76" class="menu-button"></Image>
+</AbsoluteLayout>-->

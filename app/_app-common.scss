@@ -1,0 +1,40 @@
+// Import the theme’s variables. If you’re using a color scheme
+// other than “light”, switch the path to the alternative scheme,
+// for example 'nativescript-theme-core/scss/dark'.
+@import '~nativescript-theme-core/scss/light';
+
+// theme colors (source: http://www.colourlovers.com/palette/4479325/lavendeen)
+$colorA: #443F6C;
+$colorB: #5C5785;
+$colorC: #9692B4;
+$colorD: #FCF7C5;
+$colorE: #A4D6B3;
+// extra
+$colorF: #504A80;
+
+// Customize any of the theme’s variables here, for instance $btn-color: red;
+$btn-color: $colorB;
+$grey-background: $colorC;
+$ab-background: $colorB;
+$ab-color: #FFFFFF;
+
+// Import the theme’s main ruleset.
+@import '~nativescript-theme-core/scss/index';
+
+// Place any CSS rules you want to apply on both iOS and Android here.
+// This is where the vast majority of your CSS code goes.
+
+
+
+/*
+$color: #757575;
+$color: #C1C1C1;
+$color: #bdbdbd;
+$color: #9692B4;
+$color: #443F6C;
+$color: #1b1b1b;
+$color: #5C5785;
+$color: #9e9e9e;
+$color: #443F6C; // #181818;
+$color: #616161;
+*/
