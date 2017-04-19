@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
 
-import { LoginService } from './login.service';
+import { AuthService } from '../../shared/providers/auth.service';
 
 @Component({
   moduleId: module.id,
   selector: 'login',
   templateUrl: 'login.component.html',
-  styles: [
-    `
-      .b-color-b {
-        background-color: #FFF;
-      }
-    `
-  ]
+  styleUrls: [ 'login.component.css' ]
 })
 export class LoginComponent {
 
@@ -20,11 +14,11 @@ export class LoginComponent {
   password: string;
   isLoggingIn: boolean;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthService) { }
 
   login() {
     this.isLoggingIn = true;
-    this.loginService.login(this.email, this.password)
+    this.authService.login(this.email, this.password)
       .then((res) => {
         this.isLoggingIn = false;
         console.log('LOGADO!');
@@ -33,6 +27,13 @@ export class LoginComponent {
         this.isLoggingIn = false;
         console.log('ERRO NO LOGIN!');
       });
+  }
+
+  startBackgroundAnimation(background) {
+    background.animate({
+      scale: { x: 1.0, y: 1.0 },
+      duration: 20000
+    });
   }
 
 }

@@ -23,6 +23,7 @@
     "nativescript-angular": "1.5.1",
     "nativescript-geolocation": "0.0.19",
     "nativescript-google-maps-sdk": "^1.4.3",
+    "nativescript-ngx-fonticon": "^2.1.2",
     "nativescript-plugin-firebase": "^3.11.3",
     "nativescript-telerik-ui": "^1.6.2",
     "nativescript-theme-core": "^1.0.3",

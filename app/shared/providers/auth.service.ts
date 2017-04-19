@@ -6,9 +6,9 @@ import * as firebase from 'nativescript-plugin-firebase';
 import { BackendService } from '../../shared/providers/backend.service';
 
 @Injectable()
-export class LoginService {
+export class AuthService {
 
-  constructor(private backendService: BackendService, private router: RouterExtensions) {}
+  constructor(private router: RouterExtensions) {}
 
   login(email: string, password: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ export class LoginService {
         email: email,
         password: password
       }).then((result) => {
-        this.backendService.token = result.uid;
+        BackendService.token = result.uid;
         this.router.navigate([''], { clearHistory: true });
         resolve(result);
       }).catch((err) => {
@@ -27,8 +27,8 @@ export class LoginService {
   }
 
   logout(): Promise<any> {
-    this.backendService.token = '';
-    this.router.navigate(['/login']);
+    BackendService.token = '';
+    this.router.navigate(['/login'], { clearHistory: true });
     return firebase.logout();
   }
 

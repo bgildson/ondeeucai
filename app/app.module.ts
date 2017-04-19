@@ -3,6 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { MapView } from 'nativescript-google-maps-sdk';
 
 import { AppComponent } from "./app.component";

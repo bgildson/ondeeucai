@@ -7,10 +7,10 @@ import { BackendService } from './backend.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private backendService: BackendService, private router: RouterExtensions) { }
+  constructor(private router: RouterExtensions) { }
 
   canActivate() {
-    if(this.backendService.isLoggend()) {
+    if(BackendService.isLoggend()) {
       return true;
     } else {
       this.router.navigate(["/login"]);

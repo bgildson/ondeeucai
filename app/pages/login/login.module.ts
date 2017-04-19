@@ -5,7 +5,7 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { LoginComponent } from './login.component';
-import { LoginService } from './login.service';
+import { AuthService } from '../../shared/providers/auth.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent }
@@ -19,6 +19,6 @@ const routes: Routes = [
     NativeScriptRouterModule.forChild(routes)
   ],
   declarations: [ LoginComponent ],
-  providers: [ LoginService ]
+  providers: [ AuthService ]
 })
 export class LoginModule { }

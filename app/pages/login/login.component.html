@@ -1,17 +1,24 @@
-<AbsoluteLayout width="100%" height="100%">
-  <Image src="res://maps-background-default2.png" height="100%"></Image>
-  <FlexboxLayout alignItems="center" width="100%" height="100%">
-    <StackLayout class="form m-10 b-color-b" width="100%">
-        <StackLayout class="input-field">
-          <Label class="label" text="Email"></Label>
-          <TextField class="p-x-2 p-y-4" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="email" [isEnabled]="!isLoggingIn"></TextField>
-        </StackLayout>
-        <StackLayout class="input-field">
-          <Label class="label" text="Senha"></Label>
-          <TextField class="p-x-2 p-y-4" secure="true" [(ngModel)]="password" [isEnabled]="!isLoggingIn"></TextField>
-        </StackLayout>
-        <Button class="btn btn-primary" text="Login" [isEnabled]="!isLoggingIn" (tap)="login()"></Button>
-        <Button class="btn" text="Register" [isEnabled]="!isLoggingIn"></Button>
-    </StackLayout>
-  </FlexboxLayout>
-</AbsoluteLayout>
+<GridLayout>
+  <GridLayout #background
+    scaleX="1.8"
+    scaleY="1.8"
+    class="background"
+    (loaded)="startBackgroundAnimation(background)"></GridLayout>
+
+  <AbsoluteLayout width="100%" height="100%">
+    <FlexboxLayout alignItems="center" width="100%" height="100%">
+      <StackLayout class="form m-10 b-color-b" width="100%">
+          <StackLayout class="input-field">
+            <Label class="label" text="Email"></Label>
+            <TextField keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="email" [isEnabled]="!isLoggingIn"></TextField>
+          </StackLayout>
+          <StackLayout class="input-field">
+            <Label class="label" text="Senha"></Label>
+            <TextField secure="true" [(ngModel)]="password" [isEnabled]="!isLoggingIn"></TextField>
+          </StackLayout>
+          <Button class="btn btn-primary" text="Login" [isEnabled]="!isLoggingIn" (tap)="login()"></Button>
+          <Button class="btn" text="Register" [isEnabled]="!isLoggingIn"></Button>
+      </StackLayout>
+    </FlexboxLayout>
+  </AbsoluteLayout>
+</GridLayout>

@@ -1,11 +1,16 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 
+import { ios } from 'application';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { MapView, Marker, Polyline, Position } from 'nativescript-google-maps-sdk';
 import { RadSideDrawerComponent, SideDrawerType } from 'nativescript-telerik-ui/sidedrawer/angular';
+import { Page } from 'ui/page';
 import { Color } from 'color';
 
+import { AuthService } from '../../shared/providers/auth.service';
+import { BackendService } from '../../shared/providers/backend.service';
 import { GeolocationService } from '../../shared/providers/geolocation.service';
+import { UserService } from '../../shared/providers/user.service';
 var style = require('./map-style.json');
 
 
@@ -34,11 +39,23 @@ export class MapComponent {
   watchId: any;
   gpsLine: Polyline;
   centeredOnLocation: boolean = false;
+  user: any;
 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: SideDrawerType;
 
-  constructor(private router: RouterExtensions, private geolocationService: GeolocationService) {}
+  constructor(private router: RouterExtensions,
+              private page: Page,
+              private authService: AuthService,
+              private geolocationService: GeolocationService,
+              private userService: UserService) {}
+
+  ngOnInit() {
+    if(ios) this.page.style.marginTop = -20;
+    this.userService.get(BackendService.token).first().subscribe((data: any) => {
+      this.user = data;
+    });
+  }
 
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
@@ -131,18 +148,7 @@ export class MapComponent {
   }
 
   navigateProfile() {
-    this.router.navigate(['profile']);
+    this.router.navigate(['profile', BackendService.token]);
     this.closeDrawer();
   }
-
-  navigateQuedas() {
-    this.router.navigate(['quedas']);
-    this.closeDrawer();
-  }
-
-  navigateLogin() {
-    this.router.navigate(['login'], { clearHistory: true });
-    this.closeDrawer();
-  }
-
 }
