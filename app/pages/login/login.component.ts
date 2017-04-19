@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Page } from 'ui/page';
+import { ios } from 'application';
 
 import { AuthService } from '../../shared/providers/auth.service';
 
@@ -14,7 +16,12 @@ export class LoginComponent {
   password: string;
   isLoggingIn: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private page: Page) { }
+
+  ngOnInit() {
+    if(ios) this.page.style.marginTop = -20;
+  }
 
   login() {
     this.isLoggingIn = true;
