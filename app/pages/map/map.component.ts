@@ -1,4 +1,5 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ios } from 'application';
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -11,7 +12,8 @@ import { AuthService } from '../../shared/providers/auth.service';
 import { BackendService } from '../../shared/providers/backend.service';
 import { GeolocationService } from '../../shared/providers/geolocation.service';
 import { UserService } from '../../shared/providers/user.service';
-var style = require('./map-style.json');
+import { User } from '../../shared/models/user.model';
+var style = require('../../shared/map-style.json');
 
 
 export class AddMarkerArgs {
@@ -39,7 +41,8 @@ export class MapComponent {
   watchId: any;
   gpsLine: Polyline;
   centeredOnLocation: boolean = false;
-  user: any;
+  user: { key: string, value: User}[] = new Array<{ key: string, value: User }>();
+  userSubscription: Subscription;
 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: SideDrawerType;
@@ -52,13 +55,17 @@ export class MapComponent {
 
   ngOnInit() {
     if(ios) this.page.style.marginTop = -20;
-    this.userService.get(BackendService.token).first().subscribe((data: any) => {
+    this.userSubscription = this.userService.get({id: BackendService.token}).first().subscribe((data: any) => {
       this.user = data;
     });
   }
 
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
   openDrawer(){

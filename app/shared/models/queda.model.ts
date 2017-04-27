@@ -4,9 +4,9 @@ import { Comentario } from './comentario.model';
 export class Queda {
   latitude: number;
   longitude: number;
-  data: number;
   endereco: string;
   legenda: string;
+  timestamp: number;
   risos: User[];
   comentarios: Comentario[]
 }

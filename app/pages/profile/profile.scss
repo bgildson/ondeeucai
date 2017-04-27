@@ -1,0 +1,31 @@
+@import '~/app-variables';
+
+.profile {
+  background-color: $colorG;
+
+  .card {
+    margin: 10 0;
+    padding: 5px;
+    background-color: white;
+    // border-width: 1px;
+    // border-color: #AAA;
+    // align-items: flex-start;
+  }
+
+  Image {
+    width: 40px;
+    height: 40px;
+    margin: 10 5 10 10;
+  }
+
+  .nome-completo {
+    margin: 12 5 0 5;
+    color: $colorA;
+    font-size: 16px;
+  }
+  .username {
+    margin: 0 5;
+    color: $colorC;
+    font-size: 12px;
+  }
+}

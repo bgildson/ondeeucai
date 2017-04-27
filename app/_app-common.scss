@@ -4,13 +4,7 @@
 @import '~nativescript-theme-core/scss/light';
 
 // theme colors (source: http://www.colourlovers.com/palette/4479325/lavendeen)
-$colorA: #443F6C;
-$colorB: #5C5785;
-$colorC: #9692B4;
-$colorD: #FCF7C5;
-$colorE: #A4D6B3;
-// extra
-$colorF: #504A80;
+@import 'app-variables';
 
 // Customize any of the theme’s variables here
 $btn-color: $colorB;
@@ -23,3 +17,24 @@ $ab-color: #FFFFFF;
 
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
+
+// @import '~font-awesome/scss/font-awesome';
+
+.fa {
+  font-family: FontAwesome, fontawesome-webfont;
+}
+
+.tiny {
+  font-size: 5;
+}
+
+.regular {
+  font-size: 15;
+}
+
+.large {
+  font-size: 20;
+}
+.white {
+  color: white;
+}

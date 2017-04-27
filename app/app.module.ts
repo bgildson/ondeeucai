@@ -2,13 +2,12 @@ import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from "@angular/core
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NativeScriptRouterModule, NSModuleFactoryLoader } from "nativescript-angular/router";
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { MapView } from 'nativescript-google-maps-sdk';
 
 import { AppComponent } from "./app.component";
-import { AppModuleFactoryLoader } from './appModuleFactoryLoader.service';
-import { appRouting } from './app.routing';
+import { appRoutes } from './app.routing';
 import { SharedModule } from './shared';
 
 import firebase = require("nativescript-plugin-firebase");
@@ -34,14 +33,14 @@ registerElement('MapView', () => MapView);
     NativeScriptModule,
     NativeScriptFormsModule,
     NativeScriptRouterModule,
-    appRouting,
+    NativeScriptRouterModule.forRoot(appRoutes),
     SharedModule
   ],
   declarations: [
     AppComponent
   ],
   providers: [
-    { provide: NgModuleFactoryLoader, useClass: AppModuleFactoryLoader }
+    { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
   ],
   schemas: [
     NO_ERRORS_SCHEMA

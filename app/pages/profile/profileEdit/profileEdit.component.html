@@ -1,0 +1,20 @@
+<ActionBar class="action-bar" [title]="'@' + username">
+  <ActionItem ios.systemIcon="3" ios.position="right" 
+              android.systemIcon="ic_menu_save" android.position="actionBar"
+              (tap)="save()"></ActionItem>
+</ActionBar>
+<StackLayout class="form">
+  <Image class="profile-image" [src]="user.foto"></Image>
+  <StackLayout class="input-field">
+    <Label class="label" text="Usuário"></Label>
+    <TextField autocapitalizationType="none" [(ngModel)]="user.username" [isEnabled]="!isSaving"></TextField>
+  </StackLayout>
+  <StackLayout class="input-field">
+    <Label class="label" text="Nome"></Label>
+    <TextField [(ngModel)]="user.nome" [isEnabled]="!isSaving"></TextField>
+  </StackLayout>
+  <StackLayout class="input-field">
+    <Label class="label" text="Sobrenome"></Label>
+    <TextField [(ngModel)]="user.sobrenome" [isEnabled]="!isSaving"></TextField>
+  </StackLayout>
+</StackLayout>

@@ -5,9 +5,13 @@ import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { ProfileComponent } from './profile.component';
+import { ProfileEditComponent } from './profileEdit/profileEdit.component';
+import { CardQuedaComponent } from './cardQueda/cardQueda.component';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
-  { path: ':uid', component: ProfileComponent }
+  { path: ':uid', component: ProfileComponent },
+  { path: ':uid/edit', component: ProfileEditComponent }
 ];
 
 
@@ -16,8 +20,13 @@ const routes: Routes = [
     NativeScriptModule,
     NativeScriptFormsModule,
     NativeScriptRouterModule,
-    NativeScriptRouterModule.forChild(routes)
+    NativeScriptRouterModule.forChild(routes),
+    SharedModule
   ],
-  declarations: [ ProfileComponent ]
+  declarations: [
+    ProfileComponent,
+    ProfileEditComponent,
+    CardQuedaComponent
+  ]
 })
 export class ProfileModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Page } from 'ui/page';
+import { Layout } from 'ui/layouts/layout';
 import { ios } from 'application';
 
 import { AuthService } from '../../shared/providers/auth.service';
@@ -36,7 +37,7 @@ export class LoginComponent {
       });
   }
 
-  startBackgroundAnimation(background) {
+  startBackgroundAnimation(background: Layout) {
     background.animate({
       scale: { x: 1.0, y: 1.0 },
       duration: 20000

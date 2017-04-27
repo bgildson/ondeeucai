@@ -5,10 +5,10 @@ import { FirebaseService } from './firebase.service';
 import { Queda } from '../models/queda.model';
 
 @Injectable()
-export class QuedasService extends FirebaseService<Queda> {
+export class QuedaSorrisoService extends FirebaseService<Queda, {quedaId, id}> {
 
   constructor(ngZone: NgZone) {
-    super('/quedas', ngZone);
+    super('/quedas/{quedaId}/sorrisos', ngZone);
   }
 
 }

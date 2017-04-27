@@ -1,48 +1,61 @@
-RadSideDrawer Button.btn {
-  background: none;
-  color: #443F6C;
-  font-size: 16px;
-  text-align: center;
-  margin: 5;
-  padding: 5;
-}
-RadSideDrawer Label.profile-name {
-  color: #443F6C;
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-}
-RadSideDrawer Label{
-  color: #443F6C;
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-}
-RadSideDrawer Label.divider {
-  background-color: #443F6C;
-  width: 90%;
-  height: 1px;
-}
-RadSideDrawer Label.button {
-  background-color: none;
-  color: white;
-  font-size: 24;
-  text-align: center;
-  padding: 10px;
-}
-RadSideDrawer StackLayout {
-  background-color: #9692B4;
-}
-RadSideDrawer Image.header-image {
-  height: 120px;
-  width: auto;
-  margin-top: 50px;
-}
-AbsoluteLayout Button.menu-button {
-  top: 40;
-  left: 20;
-  width: 48px;
-  height: 48px;
-  border-radius: 5px;
-  background-color: #443F6C;
+@import '~/app-variables';
+
+RadSideDrawer {
+
+  StackLayout {
+    background-color: $colorA;
+  }
+
+  Button {
+    &.btn {
+      background: none;
+      color: $colorC;
+      font-size: 16px;
+      text-align: center;
+      margin: 5;
+      padding: 5;
+    }
+    &.menu-button {
+      top: 40;
+      left: 20;
+      width: 48px;
+      height: 48px;
+      border-width: 1;
+      border-color: $colorB;
+      border-radius: 5px;
+      background-color: $colorA;
+    }
+  }
+
+  Label{
+    color: $colorC;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+
+    &.profile-name {
+      color: $colorC;
+      font-size: 16px;
+      padding: 10px;
+      text-align: center;
+    }
+    &.divider {
+      background-color: $colorC;
+      width: 90%;
+      height: 1px;
+    }
+    &.button {
+      background-color: none;
+      color: $colorC;
+      font-size: 24;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
+  Image.header-image {
+    height: 120px;
+    width: auto;
+    margin-top: 50px;
+  }
 }

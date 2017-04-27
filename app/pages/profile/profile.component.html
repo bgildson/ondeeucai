@@ -1,17 +1,21 @@
-<ActionBar class="action-bar" title="Perfil"></ActionBar>
-<StackLayout class="form">
-  <Image class="profile-image" [src]="user.foto"></Image>
-  <StackLayout class="input-field">
-    <Label class="label" text="Usuário"></Label>
-    <TextField [(ngModel)]="user.usuario" [isEnabled]="!isSaving"></TextField>
+<ActionBar class="action-bar" [title]="'@' + user.username">
+  <ActionItem ios.systemIcon="2" ios.position="right"
+              android.systemIcon="ic_menu_edit" android.position="actionBar"
+              [visibility]="isMyProfile() ? 'visible' : 'collapsed'"] (tap)="editar()"></ActionItem>
+</ActionBar>
+<ScrollView class="profile">
+  <StackLayout>
+    <FlexboxLayout class="card">
+      <Image [src]="user.foto"></Image>
+      <FlexboxLayout flexDirection="column">
+        <Label class="nome-completo" [text]="user.nome + ' ' + (user.sobrenome || '')"></Label>
+        <Label class="username" [text]="'@' + user.username"></Label>
+      </FlexboxLayout>
+    </FlexboxLayout>
+    <card-queda *ngFor="let queda of quedas" [queda]="queda"></card-queda>
+    <!--<ListView [items]="quedas">
+      <ng-template let-queda="item">
+      </ng-template>
+    </ListView>-->
   </StackLayout>
-  <StackLayout class="input-field">
-    <Label class="label" text="nome"></Label>
-    <TextField [(ngModel)]="user.nome" [isEnabled]="!isSaving"></TextField>
-  </StackLayout>
-  <StackLayout class="input-field">
-    <Label class="label" text="sobrenome"></Label>
-    <TextField [(ngModel)]="user.sobrenome" [isEnabled]="!isSaving"></TextField>
-  </StackLayout>
-  <Button class="btn btn-primary" text="Salvar" [isEnabled]="!isSaving" (tap)="save()"></Button>
-</StackLayout>
+</ScrollView>
