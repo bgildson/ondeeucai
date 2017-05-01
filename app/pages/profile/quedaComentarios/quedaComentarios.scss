@@ -1,0 +1,76 @@
+@import '~/app-variables';
+
+.comentarios {
+  flex-direction: column;
+  background-color: $colorB;
+
+  .header {
+    padding: 10 2;
+
+    Label {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 18px;
+      color: white;
+    }
+    Button {
+      font-size: 16px;
+      padding-left: 20;
+      padding-right: 20;
+      color: $colorC;
+    }
+  }
+  .content {
+    flex-grow: 1;
+    background-color: white;
+
+    .comentario {
+      padding: 5;
+      border-color: #E1E1E1;
+      border-width: 0 0 1 0;
+
+      Image {
+        width: 30px;
+        margin: 5px;
+        align-self: flex-start;
+      }
+      FlexboxLayout {
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 4px 2px;
+      }
+      .nome-completo {
+        font-size: 13px;
+        color: $colorB;
+      }
+      .username {
+        margin-left: 5px;
+        font-size: 11px;
+        color: $colorC;
+      }
+      .hora {
+        font-size: 11px;
+        color: $colorC;
+      }
+      .conteudo {
+        font-size: 13px;
+        color: $colorB;
+        padding: 4 2;
+      }
+    }
+  }
+  .footer {
+    padding: 2;
+
+    TextView {
+      flex-grow: 1;
+      background-color: white;
+      font-size: 14;
+    }
+    Button {
+      padding-left: 10;
+      padding-right: 10;
+      color: $colorC;
+    }
+  }
+}

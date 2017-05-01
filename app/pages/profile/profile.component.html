@@ -12,7 +12,7 @@
         <Label class="username" [text]="'@' + user.username"></Label>
       </FlexboxLayout>
     </FlexboxLayout>
-    <card-queda *ngFor="let queda of quedas" [queda]="queda"></card-queda>
+    <queda-card *ngFor="let queda of quedas" [queda]="queda"></queda-card>
     <!--<ListView [items]="quedas">
       <ng-template let-queda="item">
       </ng-template>

@@ -1,7 +1,7 @@
 import { User } from './user.model';
 
 export class Comentario {
-  usuario: User;
+  user: User;
   conteudo: string;
-  data: number;
+  timestamp: number;
 }

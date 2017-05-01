@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewContainerRef } from '@angular/core';
+import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/directives/dialogs';
 import { MapView } from 'nativescript-google-maps-sdk';
 import * as moment from 'moment';
 
+import { QuedaComentariosComponent } from '../quedaComentarios/quedaComentarios.component';
 import { Queda } from '../../../shared/models/queda.model';
 import { BackendService } from '../../../shared/providers/backend.service';
 import { QuedaSorrisoService } from '../../../shared/providers/quedaSorriso.service';
@@ -9,11 +11,11 @@ var style = require('../../../shared/map-style.json');
 
 @Component({
   moduleId: module.id,
-  selector: 'card-queda',
-  templateUrl: 'cardQueda.component.html',
-  styleUrls: [ 'cardQueda.css' ]
+  selector: 'queda-card',
+  templateUrl: 'quedaCard.component.html',
+  styleUrls: [ 'quedaCard.css' ]
 })
-export class CardQuedaComponent {
+export class QuedaCardComponent {
   mapView: MapView;
   mostrarComentarios: boolean;
 
@@ -27,7 +29,9 @@ export class CardQuedaComponent {
     return this._queda;
   }
 
-  constructor(private quedaSorrisoService: QuedaSorrisoService) { }
+  constructor(private quedaSorrisoService: QuedaSorrisoService, 
+              private modal: ModalDialogService, 
+              private vcRef: ViewContainerRef) { }
 
   get uid() {
     return BackendService.token;
@@ -53,7 +57,7 @@ export class CardQuedaComponent {
   }
 
   formatTimestamp(timestamp: number): string {
-    return moment(timestamp).format('hh:mm DD/MM/YYYY');
+    return moment(timestamp).format('DD/MM/YYYY hh:mm');
   }
 
   toggleSorrir() {
@@ -73,6 +77,11 @@ export class CardQuedaComponent {
   }
 
   comentar() {
-
+    let options: ModalDialogOptions = {
+      context: { quedaId: this.queda.key },
+      fullscreen: false,
+      viewContainerRef: this.vcRef
+    };
+    this.modal.showModal(QuedaComentariosComponent, options);
   }
 }

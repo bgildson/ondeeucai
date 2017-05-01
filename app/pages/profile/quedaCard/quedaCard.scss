@@ -1,6 +1,6 @@
 @import '~/app-variables';
 
-.card-queda {
+.queda-card {
   background-color: white;
   margin: 0 0 10 0;
   flex-wrap: wrap;
@@ -20,12 +20,13 @@
     width: 100%;
   }
   .legenda-down {
-    // margin: 0;
+    width: 100%;
     padding: 2 4;
     color: $colorB;
     font-size: 11;
   }
   .time {
+    flex-grow: 1;
     text-align: right;
   }
   .sorrir {

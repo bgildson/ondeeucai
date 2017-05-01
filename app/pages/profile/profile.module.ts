@@ -6,7 +6,8 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { ProfileComponent } from './profile.component';
 import { ProfileEditComponent } from './profileEdit/profileEdit.component';
-import { CardQuedaComponent } from './cardQueda/cardQueda.component';
+import { QuedaCardComponent } from './quedaCard/quedaCard.component';
+import { QuedaComentariosComponent } from './quedaComentarios/quedaComentarios.component';
 import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
@@ -26,7 +27,11 @@ const routes: Routes = [
   declarations: [
     ProfileComponent,
     ProfileEditComponent,
-    CardQuedaComponent
+    QuedaCardComponent,
+    QuedaComentariosComponent
+  ],
+  entryComponents: [
+    QuedaComentariosComponent
   ]
 })
 export class ProfileModule {}

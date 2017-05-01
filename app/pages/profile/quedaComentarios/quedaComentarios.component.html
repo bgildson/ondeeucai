@@ -1,0 +1,29 @@
+<FlexboxLayout class="comentarios">
+  <FlexboxLayout class="header">
+    <Label text="Comentários"></Label>
+    <Button text="Fechar" (tap)="close()"></Button>
+  </FlexboxLayout>
+  <ScrollView class="content">
+    <StackLayout>
+      <GridLayout class="comentario" columns="40, *" *ngFor="let comentario of comentarios">
+        <StackLayout col="0">
+          <Image [src]="comentario.value.user.foto"></Image>
+        </StackLayout>
+        <FlexboxLayout col="1">
+          <StackLayout orientation="horizontal">
+            <Label class="nome-completo" [text]="comentario.value.user.nome"></Label>
+            <Label class="username" [text]="'@' + comentario.value.user.username"></Label>
+          </StackLayout>
+          <Label class="hora" [text]="comentario.value.timestamp | timestampToDate"></Label>
+          <TextView class="conteudo" editable="false" [text]="comentario.value.conteudo"></TextView>
+        </FlexboxLayout>
+      </GridLayout>
+      <FlexboxLayout>
+      </FlexboxLayout>
+    </StackLayout>
+  </ScrollView>
+  <FlexboxLayout class="footer">
+    <TextView required #comentarioRef="ngModel" [(ngModel)]="comentario" [isEnabled]="!salvandoComentario"></TextView>
+    <Button text="Comentar" [isEnabled]="comentarioRef.valid && !salvandoComentario" (tap)="comentar()"></Button>
+  </FlexboxLayout>
+</FlexboxLayout>

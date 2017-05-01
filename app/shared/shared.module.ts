@@ -5,13 +5,19 @@ import { TNSFontIconModule, TNSFontIconPipe, TNSFontIconPurePipe } from 'natives
 import { AuthGuard } from './providers/authGuard';
 import { AuthService } from './providers/auth.service';
 import { GeolocationService } from './providers/geolocation.service';
+import { QuedaComentarioService } from './providers/quedaComentario.service';
 import { QuedaService } from './providers/queda.service';
 import { QuedaSorrisoService } from './providers/quedaSorriso.service';
 import { UserService } from './providers/user.service';
+import { TimestampToDatePipe } from './pipes/timestampToDate.pipe';
 
 const SHARED_COMPONENTS = [
   SIDEDRAWER_DIRECTIVES
 ];
+
+const SHARED_PIPES = [
+  TimestampToDatePipe
+]
 
 @NgModule({
   imports: [
@@ -23,17 +29,20 @@ const SHARED_COMPONENTS = [
     AuthGuard,
     AuthService,
     GeolocationService,
+    QuedaComentarioService,
     QuedaService,
     QuedaSorrisoService,
     UserService
   ],
   declarations: [
-    ...SHARED_COMPONENTS
+    ...SHARED_COMPONENTS,
+    ...SHARED_PIPES
   ],
   exports: [
     TNSFontIconPipe,
     TNSFontIconPurePipe,
-    ...SHARED_COMPONENTS
+    ...SHARED_COMPONENTS,
+    ...SHARED_PIPES
   ]
 })
 export class SharedModule { }

@@ -40,7 +40,7 @@ export class LoginComponent {
   startBackgroundAnimation(background: Layout) {
     background.animate({
       scale: { x: 1.0, y: 1.0 },
-      duration: 20000
+      duration: 10000
     });
   }
 

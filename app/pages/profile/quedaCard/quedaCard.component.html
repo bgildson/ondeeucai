@@ -1,0 +1,17 @@
+<FlexboxLayout class="queda-card">
+  <TextView class="legenda" editable="false" [text]="queda.value.legenda"></TextView>
+  <MapView (mapReady)="onMapReady($event)"></MapView>
+  <GridLayout class="legenda-down" columns="auto, auto, *">
+    <StackLayout col="0" orientation="horizontal" *ngIf="sorrisosCount() > 0">
+      <Label class="fa" [text]="'fa-smile-o' | fonticon"></Label>
+      <Label class="m-l-2 m-r-4" [text]="sorrisosCount()"></Label>
+    </StackLayout>
+    <StackLayout col="1" orientation="horizontal" *ngIf="comentariosCount() > 0">
+      <Label class="fa" [text]="'fa-comment' | fonticon"></Label>
+      <Label class="m-l-2 m-r-4" [text]="comentariosCount()"></Label>
+    </StackLayout>
+    <Label class="time" col="2" [text]="queda.value.timestamp | timestampToDate"></Label>
+  </GridLayout>
+  <Label class="sorrir" [class.active]="sorriu" text="Sorrir" (tap)="toggleSorrir()"></Label>
+  <Label class="comentar" text="Comentar" (tap)="comentar()"></Label>
+</FlexboxLayout>
