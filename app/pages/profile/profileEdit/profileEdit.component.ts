@@ -39,7 +39,8 @@ export class ProfileEditComponent {
   save() {
     this.isSaving = true;
     this.userService.update(this.uid, this.user)
-      .then(() => {
+      .then((data) => {
+        console.log(data);
         this.username = this.user.username;
         this.isSaving = false;
       })

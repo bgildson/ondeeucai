@@ -1,5 +1,5 @@
 <FlexboxLayout class="queda-card">
-  <TextView class="legenda" editable="false" [text]="queda.value.legenda"></TextView>
+  <Label class="legenda" textWrap="true" *ngIf="queda.value.legenda" [text]="queda.value.legenda"></Label>
   <MapView (mapReady)="onMapReady($event)"></MapView>
   <GridLayout class="legenda-down" columns="auto, auto, *">
     <StackLayout col="0" orientation="horizontal" *ngIf="sorrisosCount() > 0">
@@ -12,6 +12,6 @@
     </StackLayout>
     <Label class="time" col="2" [text]="queda.value.timestamp | timestampToDate"></Label>
   </GridLayout>
-  <Label class="sorrir" [class.active]="sorriu" text="Sorrir" (tap)="toggleSorrir()"></Label>
+  <Label class="sorrir" text="Sorrir" [class.active]="sorriu" (tap)="toggleSorrir()"></Label>
   <Label class="comentar" text="Comentar" (tap)="comentar()"></Label>
 </FlexboxLayout>

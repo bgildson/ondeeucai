@@ -1,13 +1,15 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ios } from 'application';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { MapView, Marker, Polyline, Position } from 'nativescript-google-maps-sdk';
 import { RadSideDrawerComponent, SideDrawerType } from 'nativescript-telerik-ui/sidedrawer/angular';
+import { ModalDialogService, ModalDialogParams, ModalDialogOptions } from 'nativescript-angular/directives/dialogs';
 import { Page } from 'ui/page';
 import { Color } from 'color';
 
+import { NovaQuedaComponent } from './novaQueda/novaQueda.component';
 import { AuthService } from '../../shared/providers/auth.service';
 import { BackendService } from '../../shared/providers/backend.service';
 import { GeolocationService } from '../../shared/providers/geolocation.service';
@@ -42,20 +44,23 @@ export class MapComponent {
   gpsLine: Polyline;
   centeredOnLocation: boolean = false;
   user: { key: string, value: User}[] = new Array<{ key: string, value: User }>();
-  userSubscription: Subscription;
+  user$: Subscription;
+  adicionando: boolean;
 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: SideDrawerType;
 
   constructor(private router: RouterExtensions,
               private page: Page,
+              private modal: ModalDialogService,
+              private vcRef: ViewContainerRef,
               private authService: AuthService,
               private geolocationService: GeolocationService,
               private userService: UserService) {}
 
   ngOnInit() {
     if(ios) this.page.style.marginTop = -20;
-    this.userSubscription = this.userService.get({id: BackendService.token}).first().subscribe((data: any) => {
+    this.user$ = this.userService.get({id: BackendService.token}).first().subscribe((data: any) => {
       this.user = data;
     });
   }
@@ -65,7 +70,7 @@ export class MapComponent {
   }
 
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+    this.user$.unsubscribe();
   }
 
   openDrawer(){
@@ -74,6 +79,10 @@ export class MapComponent {
 
   closeDrawer(){
     this.drawer.closeDrawer();
+  }
+
+  toggleAdicionar() {
+    this.adicionando = !this.adicionando;
   }
 
   //Map events
@@ -99,59 +108,26 @@ export class MapComponent {
   };
 
   locationReceived = (position: Position) => {
-
     if (this.mapView && position && !this.centeredOnLocation) {
       this.mapView.latitude = position.latitude;
       this.mapView.longitude = position.longitude;
       this.mapView.zoom = 16;
       this.centeredOnLocation = true;
     }
-
-    // this.gpsLine = this.addPointToLine({
-    //   color: new Color('Green'),
-    //   line: this.gpsLine,
-    //   location: position,
-    //   geodesic: true,
-    //   width: 100
-    // });
-  };
-
-  addPointToLine(args: AddLineArgs) {
-    if (!this.mapView || !args || !args.location) return;
-
-    let line = args.line;
-
-    if (!line) {
-      line = new Polyline();
-      line.visible = true;
-      line.width = args.width || 10;
-      line.color = args.color || new Color('Red');
-      line.geodesic = args.geodesic != undefined ? args.geodesic : true;
-      this.mapView.addPolyline(line);
-    }
-    line.addPoint(Position.positionFromLatLng(args.location.latitude, args.location.longitude));
-
-    return line;
-  }
-
-  addMarker(args: AddMarkerArgs) {
-      if (!this.mapView || !args || !args.location) return;
-
-      let marker = new Marker();
-      marker.position = Position.positionFromLatLng(args.location.latitude, args.location.longitude);
-      marker.title = args.title;
-      marker.snippet = args.title;
-      this.mapView.addMarker(marker);
-
-      return marker;
   };
 
   mapTapped(event) {
-    console.log('mapTapped');
-    let marker: AddMarkerArgs = new AddMarkerArgs();
-    marker.location = event.position;
-    marker.title = 'HOME!';
-    this.addMarker(marker);
+    if(!this.adicionando) return
+
+    let options: ModalDialogOptions = {
+      context: event.position,
+      fullscreen: true,
+      viewContainerRef: this.vcRef
+    };
+    this.modal.showModal(NovaQuedaComponent, options).then((event) => {
+      console.log('adicionou o comentario');
+      this.adicionando = false;
+    });
   }
 
   navigateProfile() {

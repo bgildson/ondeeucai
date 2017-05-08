@@ -34,13 +34,7 @@ export class ProfileComponent {
         this.quedas.push(queda);
         return
       }
-      let index: number;
-      this.quedas.forEach((data: any, i: number) => {
-        if(data.key == queda.key) {
-          index = i;
-          return
-        }
-      });
+      let index: number = (<any>this.quedas).findIndex((data: any) => data.key == queda.key );
       if(queda.type == 'ChildRemoved') {
         this.quedas.splice(index, 0);
       }
@@ -59,7 +53,6 @@ export class ProfileComponent {
   }
 
   editar() {
-    // this.router.navigate(['./edit'], { relativeTo: this.route });
-    this.router.navigate(['./', 'edit'], { relativeTo: this.route });
+    this.router.navigate(['profile', BackendService.token, 'edit']);
   }
 }

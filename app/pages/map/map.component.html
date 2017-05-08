@@ -1,16 +1,16 @@
 <RadSideDrawer #drawer drawerLocation="Left">
   <StackLayout tkDrawerContent>
     <Image [src]="user?.value?.foto" class="header-image img-circle"></Image>
-    <Label [text]="user?.value?.nome + ' ' + user?.value?.sobrenome" class="profile-name" ></Label>
+    <Label [text]="(user?.value?.nome || '') + ' ' + (user?.value?.sobrenome || '')" class="profile-name" ></Label>
     <Label class="divider"></Label>
     <Button class="btn" text="Perfil" (tap)="navigateProfile()"></Button>
     <Button class="btn" text="Sair" (tap)="authService.logout()"></Button>
   </StackLayout>
   <StackLayout tkMainContent>
-    <AbsoluteLayout width="100%" height="100%">
-        <MapView top="0" left="0" width="100%" height="100%" (mapReady)="onMapReady($event)" (coordinateTapped)="mapTapped($event)"></MapView>
-        <Button class="menu-button fa large white" [text]="'fa-bars' | fonticon" (tap)="openDrawer()"></Button>
-        <Label top="0" left="0" width="2%" height="100%" text=""></Label>
-    </AbsoluteLayout>
+    <GridLayout>
+      <MapView top="0" left="0" width="100%" height="100%" (mapReady)="onMapReady($event)" (coordinateTapped)="mapTapped($event)"></MapView>
+      <Button class="btn-map btn-menu fa" [text]="'fa-bars' | fonticon" (tap)="openDrawer()"></Button>
+      <Button class="btn-map btn-add fa" horizontalAlignment="right" [class.adding]="adicionando" [text]="'fa-plus' | fonticon" (tap)="toggleAdicionar()"></Button>
+    </GridLayout>
   </StackLayout>
 </RadSideDrawer>

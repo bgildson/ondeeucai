@@ -15,16 +15,33 @@ RadSideDrawer {
       margin: 5;
       padding: 5;
     }
-    &.menu-button {
-      top: 40;
-      left: 20;
-      width: 48px;
-      height: 48px;
-      border-width: 1;
-      border-color: $colorB;
-      border-radius: 5px;
-      background-color: $colorA;
-    }
+  }
+
+  .btn-map {
+    color: $colorC;
+    font-size: 16px;
+    text-align: center;
+    width: 48;
+    height: 48;
+    border-width: 1;
+    border-color: $colorB;
+    background-color: $colorA;
+  }
+  .btn-menu {
+    horizontal-align: left;
+    vertical-align: top;
+    margin: 40 0 0 20;
+    border-radius: 5px;
+  }
+  .btn-add {
+    horizontal-align: right;
+    vertical-align: bottom;
+    margin: 0 20 20 0;
+    border-radius: 27px;
+  }
+  .adding {
+    background-color: $colorB;
+    border-color: $colorA;
   }
 
   Label{

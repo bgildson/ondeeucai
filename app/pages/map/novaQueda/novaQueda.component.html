@@ -1,0 +1,8 @@
+<FlexboxLayout class="nova-queda">
+  <FlexboxLayout class="header">
+    <Button text="Cancelar" (tap)="fechar()"></Button>
+    <Label text="Nova Queda"></Label>
+    <Button text="Adicionar" (tap)="adicionar()"></Button>
+  </FlexboxLayout>
+  <TextView [(ngModel)]="queda.legenda" [isEnabled]="!adicionando"></TextView>
+</FlexboxLayout>
